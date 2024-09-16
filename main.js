@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
   });
 });
 
-const port = process.env.PORT || 5000 //http default port
+const port = process.env.PORT || 8000 //http default port
 
 app.listen(port, function () {
   console.log("HTTP server listening on port " + port);
