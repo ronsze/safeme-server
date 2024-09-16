@@ -1,8 +1,7 @@
 const express = require('express');
-const http = require('http');
+const https = require('https');
 const app = express();
-const server = http.createServer(app)
-const io = require('socket.io')(http)
+const io = require('socket.io')(https);
 
 io.on('connection', function (socket) {
   var roomID = ""
