@@ -1,7 +1,7 @@
 const express = require('express');
-const https = require('https');
+const http = require('http');
 const app = express();
-const server = https.createServer(app)
+const server = http.createServer(app)
 
 var io = require('socket.io')(server, { secure: true });
 
@@ -29,5 +29,5 @@ io.on('connection', function (socket) {
 const port = process.env.PORT || 5000 //http default port
 
 app.listen(port, function () {
-  console.log("HTTPS server listening on port " + port);
+  console.log("HTTP server listening on port " + port);
 });
