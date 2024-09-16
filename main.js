@@ -6,6 +6,7 @@ const io = require('socket.io')(https);
 io.on('connection', function (socket) {
   var roomID = ""
   socket.emit("connect")
+  console.log("connected");
 
   socket.on('enterRoom', (room) => {
     roomID = room
