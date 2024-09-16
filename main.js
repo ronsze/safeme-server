@@ -1,7 +1,7 @@
 const express = require('express');
+const https = require('https');
 const app = express();
-const http = require('http');
-const server = http.createServer(app);
+const server = https.createServer(app)
 
 var io = require('socket.io')(server, { secure: true });
 
@@ -26,9 +26,9 @@ io.on('connection', function (socket) {
   });
 });
 
-const port = 80 //http default port
-const hostname = 'http://safeme.com'
+const port = process.env.PORT || 80 //http default port
+const hostname = 'https://safeme-0b00710061bf.herokuapp.com/'
 
-server.listen(port, hostname, function () {
+app.listen(port, hostname, function () {
   console.log("HTTPS server listening on port " + port);
 });
