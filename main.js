@@ -5,22 +5,20 @@ const io = require('socket.io')(https);
 
 io.on('connection', function (socket) {
   var roomID = ""
+  socket.emit("connect")
 
   socket.on('enterRoom', (room) => {
     roomID = room
     socket.join(roomID)
-    io.to(roomID).emit("enteredRoom")
-    console.log("enter room" + roomID);
+    socket.emit("enteredRoom")
   });
 
   socket.on("sendR1", (r1) => {
     io.to(roomID).emit("sendR1", r1)
-    console.log("sendR1");
   });
 
   socket.on("sendR2", (r2) => {
     io.to(roomID).emit("sendR2", r2)
-    console.log("sendR2");
   });
 });
 
