@@ -26,7 +26,7 @@ io.on('connection', function (socket) {
   });
 });
 
-const port = process.env.PORT || 80 //http default port
+const port = process.env.PORT || 443 //http default port
 const hostname = 'https://safeme-0b00710061bf.herokuapp.com/'
 
 app.listen(port, hostname, function () {
