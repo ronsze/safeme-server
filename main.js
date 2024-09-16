@@ -2,8 +2,7 @@ const express = require('express');
 const http = require('http');
 const app = express();
 const server = http.createServer(app)
-
-var io = require('socket.io')(server, { secure: true });
+const io = require('socket.io')(http)
 
 io.on('connection', function (socket) {
   var roomID = ""
