@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const http = require('http').Server(app) 
-const io = require('socket.io')(http)
+const server = require('http').Server(app) 
+const io = require('socket.io')(server) 
 
 app.get("/", function(req, res) {
   res.send("Hello World");
@@ -10,7 +10,7 @@ app.get("/", function(req, res) {
 io.on('connection', function (socket) {
   socket.roomID = ""
   console.log("connect");
- 
+
   socket.on('enterRoom', (roomID) => {
     socket.roomID = roomID
     socket.join(roomID)
@@ -28,6 +28,6 @@ io.on('connection', function (socket) {
 
 const port = process.env.PORT || 8000
 
-app.listen(port, function () {
+server.listen(port, function () {
   console.log("server listening on port " + port);
 });
