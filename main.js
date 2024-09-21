@@ -16,14 +16,6 @@ io.on('connection', function (socket) {
     socket.join(roomID)
     socket.emit("enteredRoom")
   });
-
-  socket.on("sendR1", (r1) => {
-    io.to(socket.roomID).emit("sendR1", r1)
-  });
-
-  socket.on("sendR2", (r2) => {
-    io.to(socket.roomID).emit("sendR2", r2)
-  });
 });
 
 const port = process.env.PORT || 8000
