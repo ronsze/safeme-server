@@ -8,15 +8,21 @@ app.get("/", function(req, res) {
 })
 
 io.on('connection', function (socket) {
-  socket.roomID = ""
-  console.log("connect");
-
-  socket.on('enterRoom', (roomID) => {
-    socket.roomID = roomID
+  socket.on('enterRoom', (name, roomID) => {
+    socket.name = name
     socket.join(roomID)
     socket.emit("enteredRoom")
   });
+
+  socket.on('guard_id', (id) => {
+    socket.to(getRoom(socket)).emit("guard_id", id)
+  })
 });
+
+function getRoom(socket) {
+  const rooms = [...socket.rooms]
+  return rooms.filter(item => item !== socket.id)[0]
+}
 
 const port = process.env.PORT || 8000
 
